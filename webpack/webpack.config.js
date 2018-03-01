@@ -28,9 +28,6 @@ module.exports = {
     ],
   },
   plugins: [
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   names: ['vendor', 'manifest']
-    // }),
     new HtmlWebpackPlugin({
       template: '../../www/index.html'
     })
