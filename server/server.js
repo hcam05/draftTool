@@ -5,6 +5,8 @@ const webpackConfig = require('../webpack/webpack.config.js');
 const app = express();
 const mcache = require('memory-cache');
 
+const getNflApiData = require('./data/nflData')
+
 //CACHE//
 let cache = (duration) => {
   return (req, res, next) => {
@@ -25,6 +27,19 @@ let cache = (duration) => {
   }
 }
 
+// Mongoose Setup //
+
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+
+mongoose.connect('mongodb://localhost/nfl_draft_data');
+mongoose.connection.once('open', () => {
+  console.log('Connected to Database');
+});
+
+// Webpack //
+
 const compiler = webpack(webpackConfig);
  
 app.use(express.static(__dirname + '/www'));
@@ -39,6 +54,9 @@ app.use(webpackDevMiddleware(compiler, {
   historyApiFallback: true,
 }));
  
+// ROUTES //
+app.get('/nfldata', cache(10), getNflApiData);
+
 const server = app.listen(9000, function() {
   const port = server.address().port;
   console.log(`Is it over ${port}?!?!`);
