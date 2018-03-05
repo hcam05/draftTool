@@ -7,8 +7,22 @@
     "build": "npm run clean && npm run webpack",
     "clean": "rimraf www/assets",
     "start": "nodemon server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "webpack": "webpack --colors --display-error-details --config ./webpack/webpack.config.js"
+  },
+  "jest": {
+    "setupFiles": [
+      "./test/jestsetup.js",
+      "raf/polyfill"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "identity-obj-proxy"
+    }
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -32,10 +46,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-jest": "^22.4.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0"
+    "eslint-plugin-react": "^7.4.0",
+    "jest": "^22.4.2"
   }
 }
