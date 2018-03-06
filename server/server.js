@@ -4,8 +4,9 @@ const webpack = require('webpack');
 const webpackConfig = require('../webpack/webpack.config.js');
 const app = express();
 const mcache = require('memory-cache');
+const bodyParser = require('body-parser');
 
-const getNflApiData = require('./data/nflData')
+const getNflDbData = require('./data/nflData')
 
 //CACHE//
 let cache = (duration) => {
@@ -38,11 +39,13 @@ mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
 
+// MIDDLEWARE //
+
+app.use(express.static(__dirname + '/www'));
+
 // Webpack //
 
 const compiler = webpack(webpackConfig);
- 
-app.use(express.static(__dirname + '/www'));
  
 app.use(webpackDevMiddleware(compiler, {
   hot: true,
@@ -53,9 +56,20 @@ app.use(webpackDevMiddleware(compiler, {
   },
   historyApiFallback: true,
 }));
+
+// Body Parser 
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
  
+
+app.use(function (req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
+
 // ROUTES //
-app.get('/nfldata', cache(10), getNflApiData);
+app.get('/nfldata', cache(10), getNflDbData);
 
 const server = app.listen(9000, function() {
   const port = server.address().port;

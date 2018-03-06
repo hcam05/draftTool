@@ -10,46 +10,16 @@ mongoose.connection.once('open', () => {
   console.log('Connected to Database');
 });
 
-// NFL API
-
-const getNflApiData = () => {
-  for (let offset = 0; offset <= 1900; offset += 100) {
-    const nflApiUrl = `http://api.fantasy.nfl.com/v1/players/editordraftranks?count=100&offset=${offset}&format=json`;
-    fetch(nflApiUrl)
-      .then((resp) => resp.json())
-      .then((data) => {
-        data.players.forEach((x) => {
-          if (DraftPlayer.findOne({ 'id': 'id' })) {
-            const plyr = new DraftPlayer(x);
-            plyr.id = x.id;
-            plyr.firstName = x.firstName;
-            plyr.lastName = x.lastName;
-            plyr.team = x.teamAbbr;
-            plyr.rank = x.rank;
-            plyr.auction = x.auction;
-            plyr.stock = x.stock;
-            plyr.position = x.position;
-            plyr.save()
-              .then(() => {
-                console.log('saved in DB');
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          }
-        })
-      })
-      .catch((err) => console.log(err));
-    }
-    // mongoose.disconnect((res) => console.log('connection closed'));
-}
-
-getNflApiData();
-
 // NFL DB DATA // 
 
-const getNflDbData = () => {
-  DraftPlayer.find();
-}
-
+const getNflDbData = (req, res, err) => {
+  DraftPlayer.find({ 'position': ['WR', 'QB', 'TE', 'RB', 'DEF'], 'rank': { $gte: 1, $lte: 300 } })
+    .sort({ 'rank': 1 })
+    // .limit(20)
+    .exec((err, players) => {
+      if (err) res.send('something broke');
+      res.send(JSON.stringify(players));
+    });
+  }
+  
 module.exports = getNflDbData;

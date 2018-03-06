@@ -12,12 +12,12 @@ class Draft extends React.Component {
   }
 
   fetchPlayers() {
-    axios.get('/playerDataRoute')
+    axios.get('/nfldata')
       .then((resp) => {
-        // console.log(resp);
-        // this.setState({ Player: JSON.parse(resp) });
+        console.log(resp);
+        this.setState({ Player: resp, loading: false });
       })
-      // .catch((err) => console.log(`Error: ${err}`));
+      .catch((err) => console.log(`Error: ${err}`));
   }
 
   componentDidMount(){
