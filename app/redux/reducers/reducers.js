@@ -9,10 +9,13 @@ const initialState = {
 }
 
 const allDraftPlayers = (state = initialState.players, action) => {
-  // console.log(action);
+  console.log(action);
   switch (action.type) {
     case LOAD_PLAYERS:
-      return action.players
+      return {
+        ...state,
+        ...action.players
+      }
     default:
       return state
   }
