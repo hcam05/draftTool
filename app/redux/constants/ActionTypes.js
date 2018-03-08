@@ -1,0 +1,1 @@
+const LOAD_PLAYERS = 'LOAD_PLAYERS';
