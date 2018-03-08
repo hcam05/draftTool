@@ -9,7 +9,7 @@ module.exports = {
   context: path.join(__dirname, '../app/app'),
   entry: [
     hotMiddlewareScript,
-    '../app.js',
+    '../app.jsx',
   ],
   output: {
     path: path.join(__dirname, '../www/assets'),
