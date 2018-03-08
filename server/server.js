@@ -1,5 +1,6 @@
 const express = require('express');
 const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('../webpack/webpack.config.js');
 const app = express();
@@ -49,13 +50,14 @@ const compiler = webpack(webpackConfig);
  
 app.use(webpackDevMiddleware(compiler, {
   hot: true,
-  filename: 'bundle.js',
+  filename: 'main.js',
   publicPath: '/',
   stats: {
     colors: true,
   },
   historyApiFallback: true,
 }));
+app.use(webpackHotMiddleware(compiler))
 
 // Body Parser 
 app.use(bodyParser.urlencoded({ extended: true }))
