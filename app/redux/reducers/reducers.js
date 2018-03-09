@@ -1,26 +1,44 @@
 import { combineReducers } from 'redux';
 import {
-  LOAD_PLAYERS
+  LOAD_PLAYERS,
+  DRAFT_PLAYER
 } from '../constants/ActionTypes';
 
 const initialState = {
-  players: [],
+  allPlayers: [],
   loading: true,
 }
 
-const allDraftPlayers = (state = initialState.players, action) => {
-  console.log(action);
+const loadAllDraftPlayers = (state = initialState.allPlayers, action) => {
+  // console.log(action);
   switch (action.type) {
     case LOAD_PLAYERS:
-      return {
+      return [
         ...state,
-        ...action.players
-      }
+        ...action.allPlayers.map((eachPlayer) => {
+          eachPlayer.drafted = false;
+          return eachPlayer
+        })
+      ]
+    default:
+      return state
+  }
+}
+
+const draftPlayer = (state = initialState.allPlayers, action) => {
+  switch (action.type) {
+    case DRAFT_PLAYER:
+      return state.map((eachPlayer) => {
+        (eachPlayer.id === action.player.id)
+          ? { ...eachPlayer, drafted: !eachPlayer.drafted }
+          : eachPlayer;
+      })
     default:
       return state
   }
 }
 
 export default combineReducers({
-  allDraftPlayers,
+  loadAllDraftPlayers,
+  draftPlayer
 })
