@@ -1,5 +1,4 @@
 export const LOAD_PLAYERS = 'LOAD_PLAYERS';
 export const SORT_PLAYERS = 'SORT_PLAYERS';
-export const SELECT_PLAYER = 'SELECT_PLAYER';
 export const DRAFT_PLAYER = 'DRAFT_PLAYER';
 

@@ -1,14 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const PlayerCell = (playerStats) => {
-  // console.log(playerStats.props);
+const PlayerCell = (props) => {
+  const { onSinglePlayerClicked, player } = props;
   return (
-    <div onClick={()=>console.log('clicked',playerStats.props.id)}>
-      Rank:&nbsp;{playerStats.props.rank}&nbsp;
-      {playerStats.props.firstName}&nbsp;{playerStats.props.lastName}&nbsp;
-      {playerStats.props.position}&nbsp;
-      {playerStats.props.team}
-   </div>
+    <div onClick={onSinglePlayerClicked}>
+      Rank:&nbsp;{player.rank}&nbsp;
+      {player.firstName}&nbsp;{player.lastName}&nbsp;
+      {player.position}&nbsp;
+      {player.team}
+    </div>
   )
 }
 
