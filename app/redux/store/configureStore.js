@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from '../reducers/reducers';
 import { createLogger } from 'redux-logger';
-import { loadAllPlayers } from '../actions/actions';
+import { loadAllPlayers } from '../actions/index';
 
 const configureStore = () => {
 
