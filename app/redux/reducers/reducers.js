@@ -6,11 +6,11 @@ import {
 
 const initialState = {
   allPlayers: [],
+  draftedPlayers: [],
   loading: true,
 }
 
 const loadAllDraftPlayers = (state = initialState.allPlayers, action) => {
-  // console.log(action);
   switch (action.type) {
     case LOAD_PLAYERS:
       return [
@@ -20,25 +20,38 @@ const loadAllDraftPlayers = (state = initialState.allPlayers, action) => {
           return eachPlayer
         })
       ]
+    case DRAFT_PLAYER:
+      const { player } = action
+      return state.map((eachPlayer) => {
+          if (eachPlayer.id === action.player.id) {
+            eachPlayer.drafted = !eachPlayer.drafted
+            return eachPlayer;
+          }
+          return eachPlayer;
+        })
+      
     default:
       return state
   }
 }
 
-const draftPlayer = (state = initialState.allPlayers, action) => {
+const draftPlayer = (state = initialState.draftedPlayers, action) => {
   switch (action.type) {
     case DRAFT_PLAYER:
-      return state.map((eachPlayer) => {
-        (eachPlayer.id === action.player.id)
-          ? { ...eachPlayer, drafted: !eachPlayer.drafted }
-          : eachPlayer;
-      })
+      const { player } = action
+      return [
+        ...state,
+        player
+      ]
+
     default:
       return state
   }
 }
 
 export default combineReducers({
-  loadAllDraftPlayers,
-  draftPlayer
+  loadAllDraftPlayers: loadAllDraftPlayers,
+  draftPlayer: draftPlayer
 })
+
+

@@ -16,11 +16,11 @@ export const loadAllPlayers = () => (dispatch) => {
     });
 };
 
-const draftPlayer = (playerId) => ({
+const draftPlayer = (player) => ({
   type: DRAFT_PLAYER,
-  playerId 
+  player 
 });
 
-export const selectPlayer = playerId => (dispatch) => {
-  dispatch(draftPlayer(playerId));
+export const selectPlayer = player => (dispatch) => {
+  dispatch(draftPlayer(player));
 };
