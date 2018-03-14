@@ -1,6 +1,9 @@
-// import * as types from '../constants/ActionTypes';
-import { LOAD_PLAYERS, DRAFT_PLAYER } from '../constants/ActionTypes';
 import axios from 'axios';
+import {
+  LOAD_PLAYERS,
+  DRAFT_PLAYER,
+  UNDO_DRAFT
+} from '../constants/ActionTypes';
 
 // LOAD PLAYERS //
 
@@ -18,9 +21,18 @@ export const loadAllPlayers = () => (dispatch) => {
 
 const draftPlayer = (player) => ({
   type: DRAFT_PLAYER,
-  player 
+  player
 });
 
 export const selectPlayer = player => (dispatch) => {
   dispatch(draftPlayer(player));
+};
+
+const undraftPlayer = (undraftedPlayer) => ({
+  type: UNDO_DRAFT,
+  undraftedPlayer
+});
+
+export const undoDraft = (undraftedPlayer) => (dispatch) => {
+  dispatch(undraftPlayer(undraftedPlayer));
 };
