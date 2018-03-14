@@ -5,11 +5,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 
 module.exports = {
-  
+
   context: path.join(__dirname, '../app/app'),
   entry: [
     hotMiddlewareScript,
-    '../app.js',
+    '../app.jsx',
   ],
   output: {
     path: path.join(__dirname, '../www/assets'),
@@ -33,9 +33,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: '../../www/index.html'
-    }),
+    new HtmlWebpackPlugin({ template: '../../www/index.html' }),
     new webpack.HotModuleReplacementPlugin(),
   ],
 };

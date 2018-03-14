@@ -13,7 +13,7 @@ mongoose.connection.once('open', () => {
 // NFL DB DATA // 
 
 const getNflDbData = (req, res, err) => {
-  DraftPlayer.find({ 'position': ['WR', 'QB', 'TE', 'RB', 'DEF'], 'rank': { $gte: 1, $lte: 300 } })
+  DraftPlayer.find({ 'position': ['WR', 'QB', 'TE', 'RB', 'DEF'], 'rank': { $gte: 1, $lte: 400 } })
     .sort({ 'rank': 1 })
     // .limit(20)
     .exec((err, players) => {
