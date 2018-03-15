@@ -1,0 +1,24 @@
+.header{
+  font: 400 18px 'Roboto', 'sans-serif';
+  background: #ABB7B7;
+  font-weight: 900;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-content: space-around;
+  margin: auto;
+  align-items: flex-start;
+}
+
+.header-undoButton{
+  background-color: #96281B;
+  /* border: 1px solid #674172; */
+  border-radius: px;
+  /* box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, .2); */
+  color: white;
+  padding: 4px 4px;
+  font-size: 14px;
+  margin: 0 2px;
+  /* vertical-align: 8px;  */
+  align-items: flex-end;
+}
