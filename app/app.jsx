@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import 'babel-polyfill';
 import configureStore from './redux/store/configureStore';
 
-import Draft from './containers/Draft.jsx'
+import Draft from './containers/Draft.jsx';
 
 ReactDOM.render(
   <Provider store={configureStore()}>
