@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npm run clean && npm run webpack",
     "clean": "rimraf www/assets",
+    "sass": "node-sass -o ./app/styles/css ./app/styles/scss",
     "start": "nodemon server/server.js --ignore app",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -55,6 +56,7 @@
     "babel-jest": "^22.4.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-react-hmre": "^1.1.1",
+    "css-loader": "^0.28.10",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
@@ -63,6 +65,8 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
-    "jest": "^22.4.2"
+    "jest": "^22.4.2",
+    "node-sass": "^4.7.2",
+    "style-loader": "^0.20.3"
   }
 }

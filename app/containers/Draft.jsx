@@ -6,6 +6,8 @@ import PlayerCell from '../components/PlayerCell.jsx';
 import DraftedPlayers from './DraftedPlayers.jsx';
 import { selectPlayer, undoDraft } from '../redux/actions/index';
 
+import '../styles/css/draftboard.css';
+
 const Draft = ({ players, draftedPlayers, selectPlayer, undoDraft }) => {
   let avaliablePlayers = players.map((x) => {
     if (x.drafted === false) {
@@ -17,12 +19,13 @@ const Draft = ({ players, draftedPlayers, selectPlayer, undoDraft }) => {
     }
   });
 
-  let playersDrafted = draftedPlayers.map((x) => {
+  let playersDrafted = draftedPlayers.map((x, i) => {
     if (x.drafted === true) {
       return <DraftedPlayers
         key={x.id}
         player={x}
-      />
+        number={i}>
+      </DraftedPlayers>
     }
   });
 
@@ -69,24 +72,51 @@ const Draft = ({ players, draftedPlayers, selectPlayer, undoDraft }) => {
 
   return (
 
-    <div players={players}>
-      Avaliable Players
-      {(players.length > 0) ? avaliablePlayers : "Loading"}
-      QB
-      {(players.length > 0) ? allQB : "Loading"}
-      WR
-      {(players.length > 0) ? allWR : "Loading"}
-      RB
-      {(players.length > 0) ? allRB : "Loading"}
-      TE
-      {(players.length > 0) ? allTE : "Loading"}
-      Drafted Players
-      <button onClick={() => playersDrafted.length > 0
-        ? undoDraft(playersDrafted[playersDrafted.length - 1].props.player)
-        : console.log('no players drafted')}>
-        Undo
-        </button>
-      {playersDrafted}
+    <div players={players} className='draftBoard'>
+      <div className='allPlayers'>
+        <span className='draftBoard-header'>
+          Avaliable Players
+        </span>
+        {(players.length > 0) ? avaliablePlayers : "Loading"}
+      </div>
+      <div className='allQB'>
+        <span className='draftBoard-header'>
+          QB
+        </span>
+        {(players.length > 0) ? allQB : "Loading"}
+      </div>
+      <div className='allWR'>
+        <span className='draftBoard-header'>
+          WR
+      </span>
+        {(players.length > 0) ? allWR : "Loading"}
+      </div>
+      <div className='allRB'>
+        <span className='draftBoard-header'>
+          RB
+        </span>
+        {(players.length > 0) ? allRB : "Loading"}
+      </div>
+      <div className='allTE'>
+        <span className='draftBoard-header'>
+          TE
+        </span >
+        {(players.length > 0) ? allTE : "Loading"}
+      </div>
+      <div className='allDraftedPlayers'>
+        <div className='draftBoard-header-allPlayers'>
+          <span className='draftBoard-header-allPlayers-title'>
+            Drafted Players
+          </span>
+          <span className='draftBoard-header-allPlayers-button'
+            onClick={() => playersDrafted.length > 0
+              ? undoDraft(playersDrafted[playersDrafted.length - 1].props.player)
+              : console.log('no players drafted')}>
+            Undo
+          </span>
+        </div>
+        {playersDrafted}
+      </div>
     </div>
   )
 }
