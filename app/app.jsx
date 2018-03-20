@@ -5,10 +5,17 @@ import { Provider } from 'react-redux';
 import 'babel-polyfill';
 import configureStore from './redux/store/configureStore';
 
-import Draft from './containers/Draft.jsx';
+import DraftTool from './containers/DraftTool.jsx';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+
 
 ReactDOM.render(
   <Provider store={configureStore()}>
-    <Draft />
+    <DraftTool />
   </Provider>,
   document.getElementById('mount'));
