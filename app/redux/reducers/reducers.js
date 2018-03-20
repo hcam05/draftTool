@@ -2,13 +2,19 @@ import { combineReducers } from 'redux';
 import {
   LOAD_PLAYERS,
   DRAFT_PLAYER,
-  UNDO_DRAFT
+  UNDO_DRAFT,
+  SET_TEAMS,
+  SET_PLAYER_SLOTS,
+  SET_TEAMNAMES,
 } from '../constants/ActionTypes';
 
 const initialState = {
   allPlayers: [],
   draftedPlayers: [],
   loading: true,
+  numTeams: 0,
+  playerSlots: 0,
+  teamNames: [],
 }
 
 export const allPlayers = (state = initialState.allPlayers, action) => {
@@ -61,9 +67,42 @@ export const draftPlayer = (state = initialState.draftedPlayers, action) => {
   }
 }
 
+export const numTeams = (state = initialState.numTeams, action) => {
+  switch (action.type) {
+    case SET_TEAMS:
+      return state + action.numTeams
+    default:
+      return state
+  }
+}
+
+export const playerSlots = (state = initialState.playerSlots, action) => {
+  switch (action.type) {
+    case SET_PLAYER_SLOTS:
+      return state + action.playerSlots
+    default:
+      return state
+  }
+}
+
+export const teamNames = (state = initialState.teamNames, action) => {
+  switch (action.type) {
+    case SET_PLAYER_SLOTS:
+      return [
+        ...state,
+        ...action.teamNames
+      ]
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   allPlayers: allPlayers,
-  draftPlayer: draftPlayer
+  draftPlayer: draftPlayer,
+  numTeams: numTeams,
+  playerSlots: playerSlots,
+  teamNames: teamNames,
 })
 
 

@@ -2,7 +2,10 @@ import axios from 'axios';
 import {
   LOAD_PLAYERS,
   DRAFT_PLAYER,
-  UNDO_DRAFT
+  UNDO_DRAFT,
+  SET_TEAMS,
+  SET_PLAYER_SLOTS,
+  SET_TEAMNAMES
 } from '../constants/ActionTypes';
 
 // LOAD PLAYERS //
@@ -35,4 +38,31 @@ const undraftPlayer = (undraftedPlayer) => ({
 
 export const undoDraft = (undraftedPlayer) => (dispatch) => {
   dispatch(undraftPlayer(undraftedPlayer));
+};
+
+const setTeams = (numTeams) => ({
+  type: SET_TEAMS,
+  numTeams
+});
+
+export const setNumTeams = (numTeams) => (dispatch) => {
+  dispatch(setTeams(numTeams));
+};
+
+const setPlayerSlots = (playerSlots) => ({
+  type: SET_PLAYER_SLOTS,
+  playerSlots
+});
+
+export const setNumPlayerSlots = (playerSlots) => (dispatch) => {
+  dispatch(setPlayerSlots(playerSlots));
+};
+
+const setTeamNames = (teamNames) => ({
+  type: SET_TEAMSNAMES,
+  teamNames
+});
+
+export const setAllTeamNames = (teamNames) => (dispatch) => {
+  dispatch(setTeamNames(teamNames));
 };
