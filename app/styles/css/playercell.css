@@ -1,4 +1,16 @@
+.playerCell{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .playerCell:hover{
   background-color: #013243;
   color: white;
+}
+
+.draftedPlayers{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

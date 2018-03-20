@@ -1,6 +1,5 @@
 .header{
   font: 400 18px 'Roboto', 'sans-serif';
-  background: #ABB7B7;
   font-weight: 900;
   display: flex;
   justify-content: space-between;
@@ -8,6 +7,11 @@
   align-content: space-around;
   margin: auto;
   align-items: flex-start;
+  background-color: #22313F;
+  line-height: 4vh;
+  color: white;
+  padding: 10px;
+  box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, .2);
 }
 
 .header-undoButton{
@@ -21,4 +25,8 @@
   margin: 0 2px;
   /* vertical-align: 8px;  */
   align-items: flex-end;
+}
+
+.header-undoButton:hover{
+  cursor: pointer;
 }
