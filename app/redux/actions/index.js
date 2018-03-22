@@ -3,8 +3,10 @@ import {
   LOAD_PLAYERS,
   DRAFT_PLAYER,
   UNDO_DRAFT,
-  SET_TEAMS,
-  SET_PLAYER_SLOTS,
+  INC_TEAMS,
+  DEC_TEAMS,
+  INC_PLAYERS,
+  DEC_PLAYERS,
   SET_TEAMNAMES
 } from '../constants/ActionTypes';
 
@@ -65,4 +67,36 @@ const setTeamNames = (teamNames) => ({
 
 export const setAllTeamNames = (teamNames) => (dispatch) => {
   dispatch(setTeamNames(teamNames));
+};
+
+const incTeams = () => ({
+  type: INC_TEAMS
+})
+
+export const incrementTeams = () => (dispatch) => {
+  dispatch(incTeams());
+};
+
+const decTeams = () => ({
+  type: DEC_TEAMS
+})
+
+export const decrementTeams = () => (dispatch) => {
+  dispatch(decTeams());
+};
+
+const incPlayers = () => ({
+  type: INC_PLAYERS
+})
+
+export const incrementPlayers = () => (dispatch) => {
+  dispatch(incPlayers());
+};
+
+const decPlayers = () => ({
+  type: DEC_PLAYERS
+})
+
+export const decrementPlayers = () => (dispatch) => {
+  dispatch(decPlayers());
 };
