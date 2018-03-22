@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { incrementTeams, decrementTeams, incrementPlayers, decrementPlayers, setAllTeamNames } from '../redux/actions/index';
 
-import '../styles/css/draftSetup.css';
+import '../styles/css/draftsetup.css';
 
 const DraftSetup = ({ numTeams, numPlayers, teamNames, incrementTeams, decrementTeams, incrementPlayers, decrementPlayers, setAllTeamNames }) => {
 
