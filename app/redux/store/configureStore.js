@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import reducer from '../reducers/reducers';
 import { createLogger } from 'redux-logger';
 import { loadAllPlayers } from '../actions/index';
+import { routerReducer } from 'react-router-redux'
 
 const configureStore = () => {
 
@@ -18,7 +19,7 @@ const configureStore = () => {
   );
 
   store.dispatch(loadAllPlayers());
-  
+
   return store;
 }
 
