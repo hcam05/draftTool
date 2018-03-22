@@ -5,7 +5,7 @@ const PlayerList = (postion) => {
   return (
     <div className={`all${postion}`}>
       <span className='draftBoard-header'>
-        {/* {position} */}
+        {position}
       </span>
       {(players.length > 0) ? `all${position}` : "Loading"}
     </div>
