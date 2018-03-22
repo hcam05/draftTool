@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import DraftBoardCell from '../components/DraftBoardCell.jsx';
 
+import { Link } from 'react-router-dom';
+
 const DraftBoard = ({ draftedPlayers }) => {
-  
+
   console.log(draftedPlayers);
 
   let draftedPlayersBoard = draftedPlayers.map((x, i) => {
@@ -15,9 +17,11 @@ const DraftBoard = ({ draftedPlayers }) => {
       </DraftBoardCell>
     }
   });
-  
+
   return (
     <div className='draftBoard'>
+      <Link to='/'>Draft Tool</Link>
+      <Link to='/setup'>Setup</Link>
       Draft Board
       {draftedPlayersBoard}
     </div>
