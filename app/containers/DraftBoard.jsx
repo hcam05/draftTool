@@ -4,32 +4,63 @@ import DraftBoardCell from '../components/DraftBoardCell.jsx';
 
 import { Link } from 'react-router-dom';
 
-const DraftBoard = ({ draftedPlayers }) => {
+import '../styles/css/draftboard.css';
 
-  console.log(draftedPlayers);
+const DraftBoard = ({ draftedPlayers, teamNames, numTeams, playerSlots }) => {
+
+  console.log(draftedPlayers, teamNames, numTeams, playerSlots);
+
+  let board = (numTeams, playerSlots) => {
+    
+  }
 
   let draftedPlayersBoard = draftedPlayers.map((x, i) => {
     if (x.drafted === true) {
       return <DraftBoardCell
         key={x.id}
         player={x}
-        number={i}>
+        number={i}
+        >
       </DraftBoardCell>
     }
   });
 
+  let allTeams = teamNames.map((team, i) => {
+    return <div key={`team${i}`}>{team}</div>
+  });
+
   return (
-    <div className='draftBoard'>
-      <Link to='/'>Draft Tool</Link>
-      <Link to='/setup'>Setup</Link>
-      Draft Board
-      {draftedPlayersBoard}
+    <div>
+      <div className='draftBoard'>
+        <div className='draftBoard-header'>
+          Draft Board
+        <Link to='/'>Draft Tool</Link>
+          <Link to='/setup'>Setup</Link>
+        </div>
+
+        <br />
+
+        <div classNmae='draftBoard-table'>
+          <div className='draftBoard-table-teamName'>
+            {allTeams}
+          </div>
+
+          <br />
+
+          <div className='draftBoard-table-draftedPlayers'>
+            {draftedPlayersBoard}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
 
 const mapStateToProps = (state) => ({
-  draftedPlayers: state.draftPlayer
+  draftedPlayers: state.draftPlayer,
+  teamNames: state.teamNames,
+  numTeams: state.numTeams,
+  playerSlots: state.playerSlots
 })
 
 export default connect(
