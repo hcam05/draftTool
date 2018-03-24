@@ -5,7 +5,22 @@ import '../styles/css/playercell.css';
 const PlayerCell = (props) => {
   const { onSinglePlayerClicked, player, positionRank } = props;
   return (
-    <div onClick={onSinglePlayerClicked} className='playerCell'>
+    <div onClick={onSinglePlayerClicked} className={`playerCell ${(() => {
+      switch (player.position) {
+        case 'RB':
+          return 'RB'
+        case 'QB':
+          return 'QB'
+        case 'WR':
+          return 'WR'
+        case 'TE':
+          return 'TE'
+        case 'DEF':
+          return 'DEF'
+        default:
+          return null
+      }
+    })()}`}>
       <span className='playerCell-rank'>
         Rank:&nbsp;{player.rank}&nbsp;
       </span>
@@ -16,7 +31,7 @@ const PlayerCell = (props) => {
       {player.position}&nbsp;
       </span>
       <span className='playerCell-team'>
-      {player.team}
+      {(player.team === '') ? 'N/A' : player.team}
       </span>
     </div>
   )

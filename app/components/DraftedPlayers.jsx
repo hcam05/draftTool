@@ -7,7 +7,22 @@ const DraftedPlayers = (props) => {
   const { player, number } = props;
 
   return (
-    <div className='draftedPlayers'>
+    <div className={`draftedPlayers ${(() => {
+      switch (player.position) {
+        case 'RB':
+          return 'RB'
+        case 'QB':
+          return 'QB'
+        case 'WR':
+          return 'WR'
+        case 'TE':
+          return 'TE'
+        case 'DEF':
+          return 'DEF'
+        default:
+          return null
+      }
+    })()}`}>
       <span>
         #{number + 1}&nbsp;
       </span>
