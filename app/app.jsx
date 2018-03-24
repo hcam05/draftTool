@@ -16,13 +16,6 @@ import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-ro
 
 const history = createHistory();
 
-// import {
-//   BrowserRouter as Router,
-//   Route,
-//   Link
-// } from 'react-router-dom'
-
-
 ReactDOM.render(
   <Provider store={configureStore()}>
     <ConnectedRouter history={history}>
@@ -32,6 +25,5 @@ ReactDOM.render(
         <Route path="/setup" component={DraftSetup} />
       </div>
     </ConnectedRouter>
-    {/* <DraftTool /> */}
   </Provider>,
   document.getElementById('mount'));
