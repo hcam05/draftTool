@@ -1,0 +1,21 @@
+
+body {
+  font: 400 12px 'Roboto', 'sans-serif';
+  background: #ABB7B7;
+  margin: 0, auto;
+}
+
+.draftTool {
+  display: flex;
+  align-items: baseline; 
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  padding-top: 1vh;
+}
+
+.draftTool-header {
+  font-size: 16px;
+  font-weight: 900;
+}
