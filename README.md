@@ -1,2 +1,2 @@
-# ffDraftTool
+# DraftTool
 Fantasy Football Draft Tracker
