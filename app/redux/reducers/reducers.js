@@ -8,15 +8,36 @@ import {
   INC_PLAYERS,
   DEC_PLAYERS,
   SET_TEAMNAMES,
+  CREATE_BOARD,
 } from '../constants/ActionTypes';
 
 const initialState = {
   allPlayers: [],
   draftedPlayers: [],
   loading: true,
-  numTeams: 0,
-  playerSlots: 0,
-  teamNames: [],
+  numTeams: 12,
+  playerSlots: 15,
+  teamNames: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  draftBoard: {},
+}
+
+export const iniitalizeDraftBoard = (state = initialState.draftBoard, action) => {
+  switch (action.type) {
+    case CREATE_BOARD:
+      return {
+        ...state,
+        ...action.teamNames.map((x) => {
+          let emptySlots = []
+          for (let i = 0; i < action.playerSlots; i++) {
+            emptySlots.push('');
+          }
+          x = [...emptySlots]
+          return x;
+        })
+      }
+    default:
+      return state;
+  }
 }
 
 export const allPlayers = (state = initialState.allPlayers, action) => {
@@ -26,6 +47,8 @@ export const allPlayers = (state = initialState.allPlayers, action) => {
         ...state,
         ...action.allPlayers.map((eachPlayer) => {
           eachPlayer.drafted = false;
+          eachPlayer.owner = null;
+          eachPlayer.pickNumber = null;
           return eachPlayer
         })
       ]
@@ -72,7 +95,7 @@ export const draftPlayer = (state = initialState.draftedPlayers, action) => {
 export const numTeams = (state = initialState.numTeams, action) => {
   switch (action.type) {
     case INC_TEAMS:
-      return (state < 14) ? state + 1 : state 
+      return (state < 14) ? state + 1 : state
     case DEC_TEAMS:
       return (state > 0) ? state - 1 : state
     default:
@@ -83,7 +106,7 @@ export const numTeams = (state = initialState.numTeams, action) => {
 export const playerSlots = (state = initialState.playerSlots, action) => {
   switch (action.type) {
     case INC_PLAYERS:
-      return (state < 14) ? state + 1 : state 
+      return (state < 20) ? state + 1 : state
     case DEC_PLAYERS:
       return (state > 0) ? state - 1 : state
     default:
@@ -109,6 +132,7 @@ export default combineReducers({
   numTeams: numTeams,
   playerSlots: playerSlots,
   teamNames: teamNames,
+  draftBoard: iniitalizeDraftBoard,
 })
 
 

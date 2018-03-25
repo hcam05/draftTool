@@ -7,7 +7,8 @@ import {
   DEC_TEAMS,
   INC_PLAYERS,
   DEC_PLAYERS,
-  SET_TEAMNAMES
+  SET_TEAMNAMES,
+  CREATE_BOARD
 } from '../constants/ActionTypes';
 
 // LOAD PLAYERS //
@@ -99,4 +100,15 @@ const decPlayers = () => ({
 
 export const decrementPlayers = () => (dispatch) => {
   dispatch(decPlayers());
+};
+
+const createBoard = (playerSlots, teamNames) => ({
+  type: CREATE_BOARD,
+  playerSlots,
+  teamNames
+})
+
+export const createDraftBoard = (playerSlots, teamNames) => (dispatch) => {
+  console.log(playerSlots, teamNames)
+  dispatch(createBoard(playerSlots, teamNames));
 };

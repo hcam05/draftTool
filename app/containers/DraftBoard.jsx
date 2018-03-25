@@ -10,8 +10,7 @@ const DraftBoard = ({ draftedPlayers, teamNames, numTeams, playerSlots }) => {
 
   console.log(draftedPlayers, teamNames, numTeams, playerSlots);
 
-  let board = (numTeams, playerSlots) => {
-    
+  let board = (playerSlots, teamNames) => {
   }
 
   let draftedPlayersBoard = draftedPlayers.map((x, i) => {
@@ -20,10 +19,11 @@ const DraftBoard = ({ draftedPlayers, teamNames, numTeams, playerSlots }) => {
         key={x.id}
         player={x}
         number={i}
-        >
+      >
       </DraftBoardCell>
     }
   });
+
 
   let allTeams = teamNames.map((team, i) => {
     return <div key={`team${i}`}>{team}</div>
@@ -34,13 +34,16 @@ const DraftBoard = ({ draftedPlayers, teamNames, numTeams, playerSlots }) => {
       <div className='draftBoard'>
         <div className='draftBoard-header'>
           Draft Board
-        <Link to='/'>Draft Tool</Link>
+          &nbsp;
+          <Link to='/'>Draft Tool</Link>
+          &nbsp;
           <Link to='/setup'>Setup</Link>
         </div>
 
         <br />
 
-        <div classNmae='draftBoard-table'>
+        {/* <div className='draftBoard-table'> */}
+        <div>
           <div className='draftBoard-table-teamName'>
             {allTeams}
           </div>
@@ -65,4 +68,4 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps
-)(DraftBoard)
+)(DraftBoard);

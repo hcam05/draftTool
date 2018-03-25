@@ -6,4 +6,5 @@ export const INC_TEAMS = 'INC_TEAMS';
 export const DEC_TEAMS = 'DEC_TEAMS';
 export const INC_PLAYERS = 'INC_PLAYERS';
 export const DEC_PLAYERS = 'DEC_PLAYERS';
+export const CREATE_BOARD = 'CREATE_BOARD';
 
