@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { connect } from 'react-redux';
 import PlayerCell from '../components/PlayerCell.jsx';
+import DraftedPlayerCell from '../components/DraftedPlayerCell.jsx';
 import DraftedPlayers from '../components/DraftedPlayers.jsx';
 import PlayerList from '../components/PlayerList.jsx';
 import Header from './Header.jsx';
@@ -26,15 +27,16 @@ const DraftTool = ({ players, draftedPlayers, selectPlayer, undoDraft }) => {
   });
 
   const positionFilter = (pos, players) => {
-    return players.map((x, i) => {
-      if (x.position === pos && x.drafted === false) {
-        return <PlayerCell
-          key={x.id}
-          player={x}
-          onSinglePlayerClicked={() => selectPlayer(x)}
-          positionRank={i}
-        />
-      }
+
+    let filteredPos = players.filter((x) => (x.position === pos && x.drafted === false));
+
+    return filteredPos.map((x, i) => {
+      return <DraftedPlayerCell
+        key={x.id}
+        player={x}
+        onSinglePlayerClicked={() => selectPlayer(x)}
+        positionRank={i + 1}
+      />
     });
   }
 
@@ -44,7 +46,7 @@ const DraftTool = ({ players, draftedPlayers, selectPlayer, undoDraft }) => {
         key={x.id}
         player={x}
         number={i}
-       >
+      >
       </DraftedPlayers>
     }
   });
